@@ -270,7 +270,7 @@ class SignaturesRemoveTestCase(TestCase):
         sigfile_name3 = f"{sig_dir3}/sig"
         with open(sigfile_name3, "a"):
             pass
-        # Now remove one (should fail as file does not exist)
+        # Now remove one (should fail as file doesn't exist)
         ret = I_signatures_remove(I_SIGFILE_TYPE_SIGSET, sig_name2)
         self.assertEqual(ret, 1)
         # removed should be still absent
