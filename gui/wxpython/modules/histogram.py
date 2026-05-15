@@ -102,7 +102,7 @@ class BufferedWindow(wx.Window):
             if pdctype == "image":
                 drawid = self.imagedict[img]
             elif pdctype == "clear":
-                drawid is None
+                drawid = None
             else:
                 drawid = NewId()
         else:
