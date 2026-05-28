@@ -17,6 +17,9 @@ jobs:
         ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}-${{
         matrix.os }}-${{ matrix.python-version }}
       cancel-in-progress: true
+    permissions:
+      contents: read
+      code-quality: write
 
     strategy:
       matrix:
@@ -149,6 +152,7 @@ jobs:
           python utils/coverage_mapper.py
           coverage combine
           coverage html
+          coverage xml
 
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
@@ -164,6 +168,13 @@ jobs:
           flags: pytest-python-${{ matrix.python-version }}
           name: pytest-python-${{ matrix.python-version }}
           token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload coverage report
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        uses: actions/upload-code-coverage@v1
+        with:
+          report: coverage.xml
+          language: Python
+          label: code-coverage/pytest
       - name: Make python-only code coverage test report available
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
