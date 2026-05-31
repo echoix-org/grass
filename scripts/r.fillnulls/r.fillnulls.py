@@ -675,7 +675,7 @@ def main():
         )
         outlist = failed_list[0]
         for hole in failed_list[1:]:
-            outlist = ", " + outlist
+            outlist += ", " + hole
         gs.message(outlist)
 
     gs.message(_("Done."))
