@@ -31,7 +31,10 @@ def test_t_list_where_filter(space_time_dataset):
     assert match_lines[0] == space_time_dataset.name
 
     empty = tools.t_list(type="strds", columns="name", where="name LIKE 'land_%'")
-    assert empty is None
+    assert empty is not None
+    assert empty.returncode == 0
+    empty_lines = [line.strip() for line in empty.stdout.strip().splitlines()]
+    assert empty_lines == []
 
 
 def test_t_list_order(space_time_dataset):
