@@ -50,7 +50,7 @@ class TestSearchModule(TestCase):
         stdout = json.loads(decode(module.outputs.stdout))
         self.assertEqual(len(stdout), 6, "Six modules found")
         self.assertEqual(stdout[3]["name"], "r.water.outlet", "r.water.outlet")
-        self.assertTrue("keywords" in stdout[3]["attributes"])
+        self.assertIn("keywords", stdout[3]["attributes"])
 
     def test_shell_output(self):
         module = SimpleModule("g.search.modules", keyword="water", flags="g")
