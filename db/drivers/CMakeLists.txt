@@ -162,7 +162,7 @@ if(TARGET MYSQL)
   list(APPEND db_drivers mysql)
 
   if(WITH_DOCS)
-    generate_docs(grass-mesql
+    generate_docs(grass-mysql
       TARGET mysql
       SOURCEDIR ${CMAKE_CURRENT_SOURCE_DIR}/mysql)
   endif()
