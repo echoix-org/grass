@@ -22,7 +22,7 @@ def test_t_list_defaults(space_time_dataset):
 
 
 def test_t_list_where_filter(space_time_dataset):
-    """Check that where clause filter the output exactly."""
+    """Check that where clause filters the output exactly."""
     tools = Tools(session=space_time_dataset.session)
 
     match = tools.t_list(type="strds", columns="name", where="name LIKE 'temp_%'")
