@@ -44,3 +44,10 @@ def test_t_list_order(space_time_dataset):
     lines_asc = [line.strip() for line in result_asc.stdout.strip().splitlines()]
 
     assert lines_asc == space_time_dataset.map_names
+
+    result_desc = tools.t_list(type="raster", columns="name", order="start_time desc")
+    assert result_desc is not None
+
+    lines_desc = [line.strip() for line in result_desc.stdout.strip().splitlines()]
+
+    assert lines_desc == list(reversed(space_time_dataset.map_names))
