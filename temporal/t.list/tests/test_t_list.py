@@ -15,6 +15,8 @@ def test_t_list_defaults(space_time_dataset):
 
     # Test Map Listing (raster)
     raster_result = tools.t_list(type="raster", columns="name")
+    assert raster_result is not None
+    assert raster_result.returncode == 0
 
     raster_lines = [line.strip() for line in raster_result.stdout.strip().splitlines()]
     for map_name in space_time_dataset.map_names:
