@@ -241,7 +241,7 @@ def plot_eps(psout):
             shutil.copyfileobj(inf, outf)
 
         t = string.Template(
-        """
+            """
 $EPSSCALE $EPSSCALE scale                           %% EPS-SCALE EPS-SCALE scale
 %%
 %% drawing axes
