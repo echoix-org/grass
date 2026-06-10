@@ -212,8 +212,7 @@ def main():
     if coords:
         x, y = coords.split(",")
         tmpfile = gcore.tempfile()
-        with open(tmpfile, "w") as fd:
-            fd.write("%s%s%s\n" % (x, ifs, y))
+        Path(tmpfile).write_text("%s%s%s\n" % (x, ifs, y))
         inf = open(tmpfile)
     elif input == "-":
         infile = None
