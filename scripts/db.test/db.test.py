@@ -63,7 +63,11 @@ def main():
                 else:
                     with open(result, "w") as resf:
                         gcore.write_command(
-                            "db.select", input="-", flags="c", stdin=sql + "\n", stdout=resf
+                            "db.select",
+                            input="-",
+                            flags="c",
+                            stdin=sql + "\n",
+                            stdout=resf,
                         )
 
             except CalledModuleError:
