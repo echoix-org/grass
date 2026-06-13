@@ -430,7 +430,9 @@ def import_stds(
                     "id": mapid,
                     "start": line_list[1].strip(),
                     "end": line_list[2].strip(),
-                    "semantic_label": line_list[3].strip() if len(line_list) == 4 else "",
+                    "semantic_label": line_list[3].strip()
+                    if len(line_list) == 4
+                    else "",
                 }
 
                 new_list_file.write(
