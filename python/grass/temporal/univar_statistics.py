@@ -24,6 +24,7 @@ for details.
 from multiprocessing import Pool
 from subprocess import PIPE
 import json
+import contextlib
 
 import grass.script as gs
 from grass.pygrass.modules import Module
@@ -225,48 +226,50 @@ def print_gridded_dataset_univar_statistics(
 
         return
 
-    if output is not None:
-        out_file = open(output, "w")
-
-    if no_header is False:
-        cols = (
-            ["id", "semantic_label", "start", "end"]
-            if type == "strds"
-            else ["id", "start", "end"]
-        )
-        if zones:
-            cols.append("zone")
-        cols.extend(
-            [
-                "mean",
-                "min",
-                "max",
-                "mean_of_abs",
-                "stddev",
-                "variance",
-                "coeff_var",
-                "sum",
-                "null_cells",
-                "cells",
-                "non_null_cells",
-            ]
-        )
-        if extended is True:
-            cols.extend(["first_quartile", "median", "third_quartile"])
-            if percentile:
-                cols.extend(
-                    [
-                        "percentile_"
-                        f"{str(perc).rstrip('0').rstrip('.').replace('.', '_')}"
-                        for perc in percentile
-                    ]
-                )
-        if no_header is False and format != "json":
-            string = fs.join(cols)
-            if output is None:
-                print(string)
-            else:
-                out_file.write(string + "\n")
+    with (
+        open(output, "w")
+        if output is not None
+        else contextlib.nullcontext(None)
+    ) as out_file:
+        if no_header is False:
+            cols = (
+                ["id", "semantic_label", "start", "end"]
+                if type == "strds"
+                else ["id", "start", "end"]
+            )
+            if zones:
+                cols.append("zone")
+            cols.extend(
+                [
+                    "mean",
+                    "min",
+                    "max",
+                    "mean_of_abs",
+                    "stddev",
+                    "variance",
+                    "coeff_var",
+                    "sum",
+                    "null_cells",
+                    "cells",
+                    "non_null_cells",
+                ]
+            )
+            if extended is True:
+                cols.extend(["first_quartile", "median", "third_quartile"])
+                if percentile:
+                    cols.extend(
+                        [
+                            "percentile_"
+                            f"{str(perc).rstrip('0').rstrip('.').replace('.', '_')}"
+                            for perc in percentile
+                        ]
+                    )
+            if no_header is False and format != "json":
+                string = fs.join(cols)
+                if output is None:
+                    print(string)
+                else:
+                    out_file.write(string + "\n")
 
     # Define flags
     flag = ""
