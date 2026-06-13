@@ -391,8 +391,10 @@ def import_stds(
         fs = "|"
         maplist = []
         mapset = get_current_mapset()
-        with open(list_file_name) as list_file, open(new_list_file_name, "w") as new_list_file:
-
+        with (
+            open(list_file_name) as list_file,
+            open(new_list_file_name, "w") as new_list_file,
+        ):
             # get number of lines to correctly form the suffix
             max_count = -1
             for max_count, l in enumerate(list_file):
