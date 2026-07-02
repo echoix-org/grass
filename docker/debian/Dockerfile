@@ -224,4 +224,4 @@ RUN grass --tmp-project EPSG:25832 --exec r.in.pdal input="/tmp/simple.laz" outp
 
 WORKDIR /grassdb
 VOLUME /grassdb
-CMD ["$GRASSBIN", "--version"]
+CMD ["grass", "--version"]
