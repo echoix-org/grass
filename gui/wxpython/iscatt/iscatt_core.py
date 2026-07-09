@@ -274,7 +274,7 @@ class CatRastUpdater:
             region = self.an_data.GetRegion()
             ret = UpdateCatRast(patch_rast, region, self.scatts_dt.GetCatRastCond(cat))
             if ret < 0:
-                GException(_("Patching category raster conditions file failed."))
+                raise GException(_("Patching category raster conditions file failed."))
             RunCommand("g.remove", flags="f", type="raster", name=patch_rast)
 
     def _rasterize(self, grass_region, layer, cat, out_rast):
