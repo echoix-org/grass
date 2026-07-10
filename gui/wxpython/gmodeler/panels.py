@@ -1564,7 +1564,7 @@ class ItemPanel(wx.Panel):
             current = next
 
         if not items:
-            GMessage(_("No items to selected."), parent=self)
+            GMessage(_("No items selected."), parent=self)
 
         return items
 
