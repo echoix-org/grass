@@ -335,7 +335,7 @@ class ModelerPanel(wx.Panel, MainPageBase):
         try:
             action = self.GetModel().GetItems()[event.pid]
             if hasattr(action, "task"):
-                action.Update(running=True)
+                action.Update(running=False)
             if event.pid == self._gconsole.cmdThread.GetId() - 1 and self.start_time:
                 self.goutput.WriteCmdLog(
                     "({}) {} ({})".format(
