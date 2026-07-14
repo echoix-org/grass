@@ -861,7 +861,7 @@ class Link:
                 )
                 raise
 
-        str_err = "Driver is not supported yet, pleas use: sqlite or pg"
+        str_err = "Driver is not supported yet, please use: sqlite or pg"
         raise TypeError(str_err)
 
     def table(self):
