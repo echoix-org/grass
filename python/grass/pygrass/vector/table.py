@@ -960,7 +960,7 @@ class DBlinks:
             raise IndexError(msg)
         if indx < 0:
             indx += nlinks
-        if indx > nlinks:
+        if indx >= nlinks:
             msg = _(
                 "Index out of bounds. The maximum index allowed is "
                 "{max_link_indx}, the queried index is {indx}"
