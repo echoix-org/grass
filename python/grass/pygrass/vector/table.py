@@ -1034,7 +1034,7 @@ class DBlinks:
         :type key: str
         :param force: if True remove also the table from database otherwise
                       only the link between table and vector
-        :type force: boole
+        :type force: bool
 
         >>> from grass.pygrass.vector import VectorTopo
         >>> test_vect = VectorTopo(test_vector_name)
