@@ -559,7 +559,7 @@ class Columns:
 
         """
         if not self.is_pg():
-            # sqlite does not support rename columns:
+            # sqlite does not support changing existing column types:
             msg = "SQLite does not support to cast columns."
             raise DBError(msg)
         cur = self.conn.cursor()
