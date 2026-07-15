@@ -48,7 +48,7 @@ the respective adjacent area with largest shared boundary. Reclass by
 substitutional removing of areas smaller than 1000 ha:
 
 ```sh
-r.reclass.area input=zipcodes output=zipcodes_minor1000ha lesser=1000 method=rmarea
+r.reclass.area input=zipcodes output=zipcodes_minor1000ha lower=1000 method=rmarea
 ```
 
 ![Figure: r.reclass.area method=rmarea](zipcodes_minor1000ha.png)  
