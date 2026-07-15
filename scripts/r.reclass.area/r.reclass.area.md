@@ -64,4 +64,4 @@ r.reclass.area input=zipcodes output=zipcodes_minor1000ha lesser=1000 method=rma
 
 NRCS,  
 Markus Neteler
-Stefan Blumentath
+Stefan Blumentrath
