@@ -183,6 +183,7 @@ def registered_maps_grouped(dbif=None):
                         "unit": None if absolute else row["unit"],
                     }
                     for stds_id in row["registered_stds"].split(","):
+                        stds_id = stds_id.strip()
                         if stds_id:
                             datasets.setdefault(stds_id, []).append(map_info)
 
