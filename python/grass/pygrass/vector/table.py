@@ -1,6 +1,5 @@
 """
 Created on Wed Aug  8 15:29:21 2012
-
 @author: pietro
 """
 
@@ -399,7 +398,7 @@ class Columns:
 
         :param col_name: the name of column to add
         :type col_name: str
-        :param col_type: the tipe of column to add
+        :param col_type: the type of column to add
         :type col_type: str
 
         >>> import sqlite3
@@ -560,7 +559,7 @@ class Columns:
 
         """
         if not self.is_pg():
-            # sqlite does not support rename columns:
+            # sqlite does not support changing existing column types:
             msg = "SQLite does not support to cast columns."
             raise DBError(msg)
         cur = self.conn.cursor()
@@ -862,7 +861,7 @@ class Link:
                 )
                 raise
 
-        str_err = "Driver is not supported yet, pleas use: sqlite or pg"
+        str_err = "Driver is not supported yet, please use: sqlite or pg"
         raise TypeError(str_err)
 
     def table(self):
@@ -961,7 +960,7 @@ class DBlinks:
             raise IndexError(msg)
         if indx < 0:
             indx += nlinks
-        if indx > nlinks:
+        if indx >= nlinks:
             msg = _(
                 "Index out of bounds. The maximum index allowed is "
                 "{max_link_indx}, the queried index is {indx}"
@@ -1035,7 +1034,7 @@ class DBlinks:
         :type key: str
         :param force: if True remove also the table from database otherwise
                       only the link between table and vector
-        :type force: boole
+        :type force: bool
 
         >>> from grass.pygrass.vector import VectorTopo
         >>> test_vect = VectorTopo(test_vector_name)
