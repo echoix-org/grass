@@ -391,56 +391,57 @@ def import_stds(
         fs = "|"
         maplist = []
         mapset = get_current_mapset()
-        list_file = open(list_file_name)
-        new_list_file = open(new_list_file_name, "w")
+        with (
+            open(list_file_name) as list_file,
+            open(new_list_file_name, "w") as new_list_file,
+        ):
+            # get number of lines to correctly form the suffix
+            max_count = -1
+            for max_count, l in enumerate(list_file):
+                pass
+            max_count += 1
+            list_file.seek(0)
 
-        # get number of lines to correctly form the suffix
-        max_count = -1
-        for max_count, l in enumerate(list_file):
-            pass
-        max_count += 1
-        list_file.seek(0)
+            # Read the map list from file
+            line_count = 0
+            while True:
+                line = list_file.readline()
+                if not line:
+                    break
 
-        # Read the map list from file
-        line_count = 0
-        while True:
-            line = list_file.readline()
-            if not line:
-                break
+                line_list = line.split(fs)
 
-            line_list = line.split(fs)
+                # The filename is actually the base name of the map
+                # that must be extended by the file suffix
+                filename = line_list[0].strip().split(":")[0]
+                if base:
+                    mapname = "%s_%s" % (
+                        base,
+                        gs.get_num_suffix(line_count + 1, max_count),
+                    )
+                    mapid = "%s@%s" % (mapname, mapset)
+                else:
+                    mapname = filename
+                    mapid = mapname + "@" + mapset
 
-            # The filename is actually the base name of the map
-            # that must be extended by the file suffix
-            filename = line_list[0].strip().split(":")[0]
-            if base:
-                mapname = "%s_%s" % (
-                    base,
-                    gs.get_num_suffix(line_count + 1, max_count),
+                row = {
+                    "filename": filename,
+                    "name": mapname,
+                    "id": mapid,
+                    "start": line_list[1].strip(),
+                    "end": line_list[2].strip(),
+                    "semantic_label": line_list[3].strip()
+                    if len(line_list) == 4
+                    else "",
+                }
+
+                new_list_file.write(
+                    f"{mapname}{fs}{row['start']}{fs}{row['end']}"
+                    f"{fs}{row['semantic_label']}\n"
                 )
-                mapid = "%s@%s" % (mapname, mapset)
-            else:
-                mapname = filename
-                mapid = mapname + "@" + mapset
 
-            row = {
-                "filename": filename,
-                "name": mapname,
-                "id": mapid,
-                "start": line_list[1].strip(),
-                "end": line_list[2].strip(),
-                "semantic_label": line_list[3].strip() if len(line_list) == 4 else "",
-            }
-
-            new_list_file.write(
-                f"{mapname}{fs}{row['start']}{fs}{row['end']}"
-                f"{fs}{row['semantic_label']}\n"
-            )
-
-            maplist.append(row)
-            line_count += 1
-
-        list_file.close()
+                maplist.append(row)
+                line_count += 1
         new_list_file.close()
 
         # Read the init file
