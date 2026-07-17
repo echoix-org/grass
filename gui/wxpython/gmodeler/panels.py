@@ -165,7 +165,7 @@ class ModelerPanel(wx.Panel, MainPageBase):
             lambda message: self.SetStatusText(message)
         )
 
-        # here events are binded twice
+        # here events are bound twice
         self._gconsole.Bind(
             EVT_CMD_RUN,
             lambda event: self._switchPageHandler(
@@ -337,7 +337,7 @@ class ModelerPanel(wx.Panel, MainPageBase):
         try:
             action = self.GetModel().GetItems()[event.pid]
             if hasattr(action, "task"):
-                action.Update(running=True)
+                action.Update(running=False)
             if event.pid == self._gconsole.cmdThread.GetId() - 1 and self.start_time:
                 self.goutput.WriteCmdLog(
                     "({}) {} ({})".format(
@@ -555,7 +555,6 @@ class ModelerPanel(wx.Panel, MainPageBase):
                 remList, upList = self.model.RemoveItem(data, layer)
                 for item in remList:
                     self.canvas.diagram.RemoveShape(item)
-                    item.__del__()  # noqa: PLC2801, C2801
 
                 for item in upList:
                     item.Update()
@@ -1566,7 +1565,7 @@ class ItemPanel(wx.Panel):
             current = next
 
         if not items:
-            GMessage(_("No items to selected."), parent=self)
+            GMessage(_("No items selected."), parent=self)
 
         return items
 
