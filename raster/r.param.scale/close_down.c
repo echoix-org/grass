@@ -93,7 +93,7 @@ void close_down(void)
     case MINIC:
         strcpy(map_type, "Minimum curvature");
         Rast_append_history(&history, "Measured in direction perpendicular to "
-                                      "the direction of of maximum curvature.");
+                                      "the direction of maximum curvature.");
         break;
 
     case MAXIC:
