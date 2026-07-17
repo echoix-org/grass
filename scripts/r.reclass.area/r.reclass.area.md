@@ -34,7 +34,7 @@ r.report zipcodes unit=h
 Extract only areas greater than 2000 ha, NULL otherwise:
 
 ```sh
-r.reclass.area input=zipcodes output=zipcodes_larger2000ha greater=2000
+r.reclass.area input=zipcodes output=zipcodes_larger2000ha lower=2000
 
 r.report zipcodes_larger2000ha unit=h
 ```
@@ -48,7 +48,7 @@ the respective adjacent area with largest shared boundary. Reclass by
 substitutional removing of areas smaller than 1000 ha:
 
 ```sh
-r.reclass.area input=zipcodes output=zipcodes_minor1000ha lesser=1000 method=rmarea
+r.reclass.area input=zipcodes output=zipcodes_minor1000ha lower=1000 method=rmarea
 ```
 
 ![Figure: r.reclass.area method=rmarea](zipcodes_minor1000ha.png)  
@@ -64,4 +64,4 @@ r.reclass.area input=zipcodes output=zipcodes_minor1000ha lesser=1000 method=rma
 
 NRCS,  
 Markus Neteler
-Stefan Blumentath
+Stefan Blumentrath
