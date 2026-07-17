@@ -608,7 +608,7 @@ class OnEarthCapabilitiesTree(BaseCapabilitiesTree):
 
             # check if there are any valid urls
             if not urls:
-                gs.debug("<TilePattern>  was removed. It has no valid url.", 4)
+                gs.debug("<TilePattern> was removed. It has no valid url.", 4)
                 layer.remove(patt)
             patt.text = "\n".join(urls)
 
