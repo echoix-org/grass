@@ -228,7 +228,9 @@ def main():
             else:
                 to_table = from_table
 
-            grass.verbose(_("Coping table <%s> as table <%s>") % (from_table, to_table))
+            grass.verbose(
+                _("Copying table <%s> as table <%s>") % (from_table, to_table)
+            )
 
             # copy the table in the default database
             try:
