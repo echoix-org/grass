@@ -431,7 +431,7 @@ class WMTSCapabilitiesTree(BaseCapabilitiesTree):
             s_name = s.find(self.xml_ns.NsOws("Identifier"))
             if s_name is None or not s_name.text:
                 gs.debug("Removed invalid <Style> element.", 4)
-                layer.remove(s_name)
+                layer.remove(s)
 
         contents = self.getroot().find(self.xml_ns.NsWmts("Contents"))
         mat_sets = contents.findall(self.xml_ns.NsWmts("TileMatrixSet"))
