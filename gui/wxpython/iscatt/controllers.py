@@ -1075,7 +1075,6 @@ class IClassConnection:
             cat_rast = self.scatt_mgr.core.GetCatRast(cat_id)
 
             train_mgr.SetAlias(original=cat_rast, alias=cats_attrs["name"])
-            cats_attrs["name"]
 
     def RenderCatRast(self, cat_id):
         train_mgr, preview_mgr = self.iclass_frame.GetMapManagers()
