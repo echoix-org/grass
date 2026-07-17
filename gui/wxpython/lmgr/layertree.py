@@ -1313,8 +1313,6 @@ class LayerTree(treemixin.DragAndDrop, CT.CustomTreeCtrl):
             if maplayer and ltype != "command":
                 break
             child = self.GetNextSibling(child)
-            if child is None:
-                child, cookie = self.GetNextChild(child, cookie)
         current_opacity = maplayer.GetOpacity()
         dlg = SetOpacityDialog(
             self,
