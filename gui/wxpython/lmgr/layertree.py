@@ -2322,6 +2322,10 @@ class LayerTree(treemixin.DragAndDrop, CT.CustomTreeCtrl):
         """Change layer"""
         type = self.GetLayerInfo(item, key="type")
         layerName = None
+        cmdlist = None
+        opac = None
+        chk = None
+        hidden = None
 
         if type == "command":
             win = self.FindWindowById(self.GetLayerInfo(item, key="ctrl"))
@@ -2341,6 +2345,9 @@ class LayerTree(treemixin.DragAndDrop, CT.CustomTreeCtrl):
                 layerName, found = GetLayerNameFromCmd(cmdlist, fullyQualified=True)
                 if not found:
                     layerName = self.GetItemText(item)
+
+        if None in (cmdlist, opac, chk, hidden):
+            return
 
         maplayer = self.Map.ChangeLayer(
             layer=self.GetLayerInfo(item, key="maplayer"),
