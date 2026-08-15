@@ -235,15 +235,13 @@ def plot_eps(psout):
     averagedirectionlegendy = 1.85 * halfframe
 
     ##########
-    outf = open(psout, "w")
-
     prolog = os.path.join(os.environ["GISBASE"], "etc", "d.polar", "ps_defs.eps")
-    inf = open(prolog)
-    shutil.copyfileobj(inf, outf)
-    inf.close()
+    with open(psout, "w") as outf:
+        with open(prolog) as inf:
+            shutil.copyfileobj(inf, outf)
 
-    t = string.Template(
-        """
+        t = string.Template(
+            """
 $EPSSCALE $EPSSCALE scale                           %% EPS-SCALE EPS-SCALE scale
 %%
 %% drawing axes
